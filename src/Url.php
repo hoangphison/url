@@ -60,6 +60,7 @@ class Url implements UriInterface
         $url->path = isset($parts['path']) ? $parts['path'] : '/';
         $url->query = QueryParameterBag::fromString(isset($parts['query']) ? $parts['query'] : '');
         $url->fragment = isset($parts['fragment']) ? $parts['fragment'] : '';
+
         return $url;
     }
 
@@ -198,7 +199,7 @@ class Url implements UriInterface
     {
         $segments = $this->getSegments();
 
-        return !empty(end($segments)) ? end($segments) : null;
+        return ! empty(end($segments)) ? end($segments) : null;
     }
 
     public function withScheme($scheme)
@@ -302,7 +303,7 @@ class Url implements UriInterface
         return $url;
     }
 
-    public function matches(Url $url)
+    public function matches(self $url)
     {
         return $this->__toString() === $url->__toString();
     }
