@@ -14,44 +14,44 @@ class QueryParameterBag
         $this->parameters = $parameters;
     }
 
-    public static function fromString(string $query = ''): QueryParameterBag
+    public static function fromString($query = '')
     {
         if ($query === '') {
             return new static();
         }
 
-        return new static(Arr::mapToAssoc(explode('&', $query), function (string $keyValue) {
+        return new static(Arr::mapToAssoc(explode('&', $query), function ($keyValue) {
             $parts = explode('=', $keyValue, 2);
 
             return count($parts) === 2 ? $parts : [$parts[0], null];
         }));
     }
 
-    public function get(string $key, $default = null)
+    public function get($key, $default = null)
     {
-        return $this->parameters[$key] ?? $default;
+        return isset($this->parameters[$key]) ? $this->parameters[$key] : $default;
     }
 
-    public function has(string $key): bool
+    public function has($key)
     {
         return array_key_exists($key, $this->parameters);
     }
 
-    public function set(string $key, string $value)
+    public function set($key, $value)
     {
         $this->parameters[$key] = $value;
 
         return $this;
     }
 
-    public function unset(string $key)
+    public function unsetParam($key)
     {
         unset($this->parameters[$key]);
 
         return $this;
     }
 
-    public function all(): array
+    public function all()
     {
         return $this->parameters;
     }

@@ -63,7 +63,7 @@ class QueryParameterBagTest extends TestCase
     {
         $queryParameterBag = new QueryParameterBag(['offset' => 10]);
 
-        $queryParameterBag->unset('offset');
+        $queryParameterBag->unsetParam('offset');
 
         $this->assertFalse($queryParameterBag->has('offset'));
     }

@@ -6,7 +6,7 @@ use InvalidArgumentException;
 
 class InvalidArgument extends InvalidArgumentException
 {
-    public static function invalidScheme(string $url): self
+    public static function invalidScheme($url)
     {
         return new static("The scheme `{$url}` isn't valid. It should be either `http` or `https`.");
     }
